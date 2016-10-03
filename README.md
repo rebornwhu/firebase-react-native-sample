@@ -29,3 +29,9 @@ const itemsRef = rootRef.child('items');
 
 ### [Tutorial - https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
 
+### 10/3/2016 Shawn:
+Running into Firebase permission issue when trying to run the project but resolve it using this SO solution: [database denial](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
+
+
+
+

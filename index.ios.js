@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import ReactNative from 'react-native';
+import { FIREBASE_CONFIG } from './credentails';
 const firebase = require('firebase');
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
@@ -23,13 +24,7 @@ const {
 } = ReactNative;
 
 // Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyC3ebdIS2Hyt0QDL7A4_QJC0Nuu6lK6jUE",
-  authDomain: "firereactbasenative.firebaseapp.com",
-  databaseURL: "https://firereactbasenative.firebaseio.com",
-  storageBucket: "",
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 
 class FirebaseReactNativeSample extends Component {
 
