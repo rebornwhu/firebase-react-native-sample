@@ -30,8 +30,10 @@ class FirebaseReactNativeSample extends Component {
 
   constructor(props) {
     super(props);
+    // Set component state
     this.state = {
       dataSource: new ListView.DataSource({
+        // must override method
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
@@ -40,6 +42,12 @@ class FirebaseReactNativeSample extends Component {
 
   getRef() {
     return firebaseApp.database().ref();
+  }
+
+  componentDidMount() {
+    // Start listening to data set change after component mount
+    // because inside the method, we actually update state
+    this.listenForItems(this.itemsRef);
   }
 
   listenForItems(itemsRef) {
@@ -61,10 +69,6 @@ class FirebaseReactNativeSample extends Component {
     });
   }
 
-  componentDidMount() {
-    this.listenForItems(this.itemsRef);
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -83,23 +87,6 @@ class FirebaseReactNativeSample extends Component {
     )
   }
 
-  _addItem() {
-    AlertIOS.prompt(
-      'Add New Item',
-      null,
-      [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {
-          text: 'Add',
-          onPress: (text) => {
-            this.itemsRef.push({ title: text })
-          }
-        },
-      ],
-      'plain-text'
-    );
-  }
-
   _renderItem(item) {
 
     const onPress = () => {
@@ -115,6 +102,24 @@ class FirebaseReactNativeSample extends Component {
 
     return (
       <ListItem item={item} onPress={onPress} />
+    );
+  }
+
+  _addItem() {
+    // Here "plain-text" is the alert type, it's just text input
+    AlertIOS.prompt(
+      'Add New Item',
+      null,
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {
+          text: 'Add',
+          onPress: (text) => {
+            this.itemsRef.push({ title: text })
+          }
+        },
+      ],
+      'plain-text'
     );
   }
 
