@@ -63,6 +63,10 @@ class FirebaseReactNativeSample extends Component {
       });
 
       this.setState({
+        // $cloneWithRows() takes 2 params - data, id
+        // in the previous forEach loop, we set those two data
+        // even though I may not know the key of the object,
+        // the sequence matches
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
 
